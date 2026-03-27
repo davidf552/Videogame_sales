@@ -1,0 +1,14 @@
+name: dashboard.looker_studio
+type: looker
+description: "Dashboard sales data visualization: https://lookerstudio.google.com/s/gzHHnAxkZss"
+
+uri: https://lookerstudio.google.com/s/gzHHnAxkZss
+
+depends:
+    - time_view
+    - distribution_view
+
+tags:
+  - dashboard
+  - yearly
+  - sales
