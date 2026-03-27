@@ -1,0 +1,9 @@
+name: bruin-init
+schedule: "0 0 1 1 *"
+start_date: "2026-03-27"
+catchup: false
+
+default_connections:
+    google_cloud_platform: "gcp-prod"
+    gcs: "gcs-prod"
+    
