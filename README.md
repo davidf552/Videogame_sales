@@ -17,6 +17,11 @@ Bruin will be the data platform employed to build all the above and in simple st
 ![Project Dahboard](https://github.com/davidf552/Videogame_sales/blob/main/images/project_dashboard.png)
 
 
+## Table of Contents
+- [Setup](#setup)
+- [Batch Setup](#batch)
+
+
 ## Setup
 ### Google Cloud Services
 * You will need a GC account for this project: https://cloud.google.com/
@@ -135,7 +140,7 @@ environments:
 
 ```
 Replace "credentials.json" with the path to where you stored your service account credentials.
-## Batch Setup
+## Batch
 Also, you need to put those connections inside the pipeline.yml file:
 ```yml
 name: bruin-init
