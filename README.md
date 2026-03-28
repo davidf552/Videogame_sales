@@ -20,6 +20,10 @@ Bruin will be the data platform employed to build all the above and in simple st
 ## Table of Contents
 - [Setup](#setup)
 - [Batch Setup](#batch)
+- [Ingestion](#ingestion)
+- [Warehouse](#warehouse)
+- [Dashboard](#dashboard)
+- [Pipeline](#pipeline)
 
 
 ## Setup
@@ -158,6 +162,9 @@ This tells Bruin to run the pipeline once a year, since the dataset is updated a
 ### Note
 If there are any problems while setting up Bruin , please refer to the documentation: https://getbruin.com/docs/bruin/getting-started/introduction/installation.html
 
+[Return](#table-of-contents)
+
+
 ## Ingestion
 The first part of the pipeline will be downloading the dataset and putting it into the data lake:
 
@@ -212,7 +219,10 @@ upload_csv(
 )
 
 ```
-## To the warehouse
+[Return](#table-of-contents)
+
+
+## Warehouse
 Then, the dataset inside the data lake will go into the data warehouse using the following .sql file:
 
 ```hcl
@@ -252,7 +262,9 @@ FROM FILES (
 ### Note
 The table is destroyed each year in order to prevent duplicate data.
 
-## Report creation
+[Return](#table-of-contents)
+
+## Dashboard
 In order to get the data in a more visual format, you will need to transform the data inside the warehouse:
 One of them will be showing each console percentual influence 
 ```hcl
@@ -302,7 +314,10 @@ Now, with both views created, you will create the dashboard with Looker Studio. 
 * Put BigQuery as a data source and log in when prompted.
 * Select the two views just created.
 * Create a new report and put each view in a different graph.
+
+  
 The finished dashboard will look like this: ![Project Dahboard](https://github.com/davidf552/Videogame_sales/blob/main/images/project_dashboard.png)
+
 
 You can also share the link when you finished the report like this: https://lookerstudio.google.com/s/gzHHnAxkZss
 
@@ -325,8 +340,10 @@ tags:
 
 
 ```
+[Return](#table-of-contents)
 
-## Pipeline run
+
+## Pipeline
 Once you have done everything from above, run the following command in the terminal:
 
 ```bash
@@ -337,3 +354,5 @@ Replace bruin-pipeline with the name you have chosen if you have changed it.
 
 
 That should be it. The pipeline will run once a year and refresh the data in both the lake and warehouse.
+
+[Return](#table-of-contents)
