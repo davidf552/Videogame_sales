@@ -6,12 +6,16 @@ These questions and more can be resolved with: DATA.
 It is important to get up-to-date information regarding sales and the public's perception about which console is the best.
 
 In this project: 
-* A yearly report about videogame sales will be transported from its source to Google Cloud Storage GCS (data lake).
+* A yearly report about videogame sales will be transported from its source to Google Cloud Storage GCS (data lake). [Dataset location](https://www.kaggle.com/datasets/bhushandivekar/video-game-sales-and-industry-data-1980-2024/data)
 * From GCS, it will go into Google BigQuery (data warehouse).
 * Inside BigQuery, two transformations will take place and create two different Views, where Looker Studio (dashboard) will present them in a graphical manner.
 
+![Project_schematics](https://github.com/davidf552/Videogame_sales/blob/main/images/project_schematics.jpg)
+
 How will these 3 steps be executed? It can be done manually one at a time, but there is a better way: a data pipeline.
 Bruin will be the data platform employed to build all the above and in simple steps.
+
+[Online dashboard](https://lookerstudio.google.com/s/gzHHnAxkZss)
 
 
 ![Project Dahboard](https://github.com/davidf552/Videogame_sales/blob/main/images/project_dashboard.png)
@@ -272,7 +276,8 @@ FROM FILES (
 
 ```
 ### Note
-The table is destroyed each year in order to prevent duplicate data.
+* The table is destroyed each year in order to prevent duplicate data.
+* The table was clustered and not partitioned, since the current problems to solve will require frequent queries with the console column.
 
 [Return](#table-of-contents)
 
