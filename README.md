@@ -20,6 +20,7 @@ Bruin will be the data platform employed to build all the above and in simple st
 ## Table of Contents
 - [Setup](#setup)
 - [Batch Setup](#batch)
+- [Bruin Assets](#bruin-assets)
 - [Ingestion](#ingestion)
 - [Warehouse](#warehouse)
 - [Dashboard](#dashboard)
@@ -162,10 +163,20 @@ This tells Bruin to run the pipeline once a year, since the dataset is updated a
 ### Note
 If there are any problems while setting up Bruin , please refer to the documentation: https://getbruin.com/docs/bruin/getting-started/introduction/installation.html
 
+## Bruin Assets
+Create 5 files inside the assets folder that was created with bruin init:
+* datalake_ingestion.py
+* table_warehouse.sql
+* time_view.sql
+* distribution_view.sql
+* dashboard.asset.yml
+
+![Bruin lineage](https://github.com/davidf552/Videogame_sales/blob/main/images/lineage.png)
 [Return](#table-of-contents)
 
 
 ## Ingestion
+### datalake_ingestion.py
 The first part of the pipeline will be downloading the dataset and putting it into the data lake:
 
 ```python
@@ -223,6 +234,7 @@ upload_csv(
 
 
 ## Warehouse
+### table_warehouse.sql
 Then, the dataset inside the data lake will go into the data warehouse using the following .sql file:
 
 ```hcl
@@ -265,6 +277,7 @@ The table is destroyed each year in order to prevent duplicate data.
 [Return](#table-of-contents)
 
 ## Dashboard
+### distribution_view.sql
 In order to get the data in a more visual format, you will need to transform the data inside the warehouse:
 One of them will be showing each console percentual influence 
 ```hcl
@@ -287,7 +300,7 @@ GROUP BY console
 ORDER BY year_sales DESC;
 
 ```
-
+### time_view.sql
 The other will compute the total sales by release year.
 
 ```hcl
@@ -321,6 +334,7 @@ The finished dashboard will look like this: ![Project Dahboard](https://github.c
 
 You can also share the link when you finished the report like this: https://lookerstudio.google.com/s/gzHHnAxkZss
 
+### dashboard.asset.yml
 Finally, create a dashboard asset:
 ```yml
 name: dashboard.looker_studio
@@ -354,5 +368,8 @@ Replace bruin-pipeline with the name you have chosen if you have changed it.
 
 
 That should be it. The pipeline will run once a year and refresh the data in both the lake and warehouse.
+
+
+![Bruin execution](https://github.com/davidf552/Videogame_sales/blob/main/images/bruin_pipeline.png)
 
 [Return](#table-of-contents)
