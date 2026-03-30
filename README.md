@@ -17,8 +17,10 @@ Bruin will be the data platform employed to build all the above and in simple st
 [Online dashboard](https://lookerstudio.google.com/s/gzHHnAxkZss)
 
 
-![Project Dahboard](https://github.com/davidf552/Videogame_sales/blob/main/images/dashboard1.png)
-
+<p align="center">
+  <img src="https://github.com/davidf552/Videogame_sales/blob/main/images/dashboard1.png" width="45%" />
+  <img src="https://github.com/davidf552/Videogame_sales/blob/main/images/dashboard2.png" width="45%" />
+</p>
 
 ## Table of Contents
 - [Setup](#setup)
