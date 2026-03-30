@@ -31,7 +31,7 @@ Bruin will be the data platform employed to build all the above and in simple st
 - [Step 3: Table Creation](#step-3-table-creation)
 - [Pipeline](#pipeline)
 <br><br>
-![Project_schematics](https://github.com/davidf552/Videogame_sales/blob/main/images/Zoomcamp_project.png)
+![Project_schematics](https://github.com/davidf552/Videogame_sales/blob/main/images/Zoomcamp_2026.png)
 
 ## Setup
 ### Google Cloud Services
