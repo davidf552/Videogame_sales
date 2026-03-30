@@ -28,7 +28,7 @@ Bruin will be the data platform employed to build all the above and in simple st
 - [Bruin Assets](#bruin-assets)
 - [Step 1: Data Lake](#step-1-data-lake)
 - [Step 2: Data Warehouse](#step-2-data-warehouse)
-- [Step 3: View Creation](#step-3-view-creation)
+- [Step 3: Table Creation](#step-3-table-creation)
 - [Pipeline](#pipeline)
 <br><br>
 ![Project_schematics](https://github.com/davidf552/Videogame_sales/blob/main/images/Zoomcamp_project2026.png)
@@ -183,8 +183,8 @@ If there are any problems while setting up Bruin , please refer to the documenta
 Create 5 files inside the assets folder that was created with bruin init:
 * datalake_ingestion.py
 * table_warehouse.sql
-* time_view.sql
-* distribution_view.sql
+* time_table.sql
+* distribution_table.sql
 * dashboard.asset.yml
 
 ![Bruin lineage](https://github.com/davidf552/Videogame_sales/blob/main/images/lineage.png)
@@ -302,14 +302,14 @@ FROM FILES (
 
 <br><br>
 
-## Step 3: View Creation
-### distribution_view.sql
+## Step 3: Table Creation
+### distribution_table.sql
 In order to get the data in a more visual format, you will need to transform the data inside the warehouse:
 One of them will be showing each console percentual influence 
 ```hcl
 /* @bruin
-name: distribution_view
-description: This asset creates a view in BigQuery 
+name: distribution_table
+description: This asset creates a table in BigQuery 
              that calculates the amount of influence of each console.
 type: bq.sql
 
@@ -318,7 +318,7 @@ depends:
 @bruin */
 
 
-CREATE OR REPLACE VIEW `video-490706.game_sales.Sales_by_console` AS
+CREATE OR REPLACE TABLE `video-490706.game_sales.Console_sales` AS
 SELECT console, ROUND(SUM(total_sales), 2) AS year_sales, 
     ROUND(SUM(total_sales) * 100.0 / SUM(SUM(total_sales)) OVER (), 2) AS pct_sales
 FROM `video-490706.game_sales.Videogame_sales`
@@ -326,13 +326,13 @@ GROUP BY console
 ORDER BY year_sales DESC;
 
 ```
-### time_view.sql
+### time_table.sql
 The other will compute the total sales by release year.
 
 ```hcl
 /* @bruin
-name: time_view
-description: This asset creates a view in BigQuery
+name: time_table
+description: This asset creates a table in BigQuery
              that calculates the total sales by release year.
 type: bq.sql
 
@@ -341,7 +341,7 @@ depends:
 
 @bruin */
 
-CREATE OR REPLACE VIEW `video-490706.game_sales.Sales_by_year` AS
+CREATE OR REPLACE TABLE `video-490706.game_sales.Year_sales` AS
 SELECT release_year, ROUND(SUM(total_sales), 2) AS year_sales
 FROM `video-490706.game_sales.Videogame_sales`
 GROUP BY release_year ORDER BY release_year;
@@ -349,10 +349,10 @@ GROUP BY release_year ORDER BY release_year;
 
 ```
 
-Now, with both views created, you will create the dashboard with Looker Studio. https://lookerstudio.google.com/
+Now, with both tables created, you will create the dashboard with Looker Studio. https://lookerstudio.google.com/
 * Put BigQuery as a data source and log in when prompted.
-* Select the two views just created.
-* Create a new report and put each view in a different graph.
+* Select the two tables just created.
+* Create a new report and put each table in a different graph.
 
 
 <br>
@@ -369,8 +369,8 @@ description: "Dashboard sales data visualization: https://lookerstudio.google.co
 uri: https://lookerstudio.google.com/s/gzHHnAxkZss
 
 depends:
-    - time_view
-    - distribution_view
+    - time_table
+    - distribution_table
 
 tags:
   - dashboard
