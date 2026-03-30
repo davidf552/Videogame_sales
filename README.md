@@ -404,6 +404,6 @@ Replace bruin-pipeline with the name you have chosen if you have changed it.
 That should be it. The pipeline will run once a year and refresh the data in both the lake and warehouse.
 
 
-![Bruin execution](https://github.com/davidf552/Videogame_sales/blob/main/images/bruin_pipeline.png)
+![Bruin execution](https://github.com/davidf552/Videogame_sales/blob/main/images/bruin_final_pipeline.png)
 
 [Return](#table-of-contents)
