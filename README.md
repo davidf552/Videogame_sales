@@ -14,7 +14,7 @@ In this project:
 How will these 3 steps be executed? It can be done manually one at a time, but there is a better way: a data pipeline.
 Bruin will be the data platform employed to build all the above and in simple steps.
 
-[Online dashboard](https://lookerstudio.google.com/s/gzHHnAxkZss)
+[ONLINE DASHBOARD](https://lookerstudio.google.com/s/gzHHnAxkZss)
 
 
 <p align="center">
@@ -28,10 +28,10 @@ Bruin will be the data platform employed to build all the above and in simple st
 - [Bruin Assets](#bruin-assets)
 - [Step 1: Data Lake](#step-1-data-lake)
 - [Step 2: Data Warehouse](#step-2-data-warehouse)
-- [Step 3: Table Creation](#step-3-table-creation)
+- [Step 3: Transformation](#step-3-transformation)
 - [Pipeline](#pipeline)
 <br><br>
-![Project_schematics](https://github.com/davidf552/Videogame_sales/blob/main/images/Zoomcamp_2026.png)
+![Project_schematics](https://github.com/davidf552/Videogame_sales/blob/main/images/Zoomcamp_project_schema.png)
 
 ## Setup
 ### Google Cloud Services
@@ -302,7 +302,7 @@ FROM FILES (
 
 <br><br>
 
-## Step 3: Table Creation
+## Step 3: Transformation
 ### distribution_table.sql
 In order to get the data in a more visual format, you will need to transform the data inside the warehouse:
 One of them will be showing each console percentual influence 
