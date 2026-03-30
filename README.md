@@ -187,7 +187,7 @@ Create 5 files inside the assets folder that was created with bruin init:
 * distribution_table.sql
 * dashboard.asset.yml
 
-![Bruin lineage](https://github.com/davidf552/Videogame_sales/blob/main/images/lineage.png)
+![Bruin lineage](https://github.com/davidf552/Videogame_sales/blob/main/images/full_lineage.png)
 [Return](#table-of-contents)
 
 
