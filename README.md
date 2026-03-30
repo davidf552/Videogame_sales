@@ -10,7 +10,6 @@ In this project:
 * From GCS, it will go into Google BigQuery (data warehouse).
 * Inside BigQuery, two transformations will take place and create two different Views, where Looker Studio (dashboard) will present them in a graphical manner.
 
-![Project_schematics](https://github.com/davidf552/Videogame_sales/blob/main/images/project_schematics.jpg)
 
 How will these 3 steps be executed? It can be done manually one at a time, but there is a better way: a data pipeline.
 Bruin will be the data platform employed to build all the above and in simple steps.
@@ -18,18 +17,19 @@ Bruin will be the data platform employed to build all the above and in simple st
 [Online dashboard](https://lookerstudio.google.com/s/gzHHnAxkZss)
 
 
-![Project Dahboard](https://github.com/davidf552/Videogame_sales/blob/main/images/project_dashboard.png)
+![Project Dahboard](https://github.com/davidf552/Videogame_sales/blob/main/images/dashboard1.png)
 
 
 ## Table of Contents
 - [Setup](#setup)
 - [Batch Setup](#batch)
 - [Bruin Assets](#bruin-assets)
-- [Ingestion](#ingestion)
-- [Warehouse](#warehouse)
-- [Dashboard](#dashboard)
+- [Step 1: Data Lake](#step-1-data-lake)
+- [Step 2: Data Warehouse](#step-2-data-warehouse)
+- [Step 3: View Creation](#step-3-view-creation)
 - [Pipeline](#pipeline)
-
+<br><br>
+![Project_schematics](https://github.com/davidf552/Videogame_sales/blob/main/images/Zoomcamp_project2026.png)
 
 ## Setup
 ### Google Cloud Services
@@ -38,13 +38,20 @@ Bruin will be the data platform employed to build all the above and in simple st
 * Generate the service keys and download the json file. Keep it in a safe place.
 * Take note of the project ID
 
+<br>
+
 ### Terraform
 You will need to download and install Terraform in order to prepare the data lake and data warehouse for the pipeline. https://developer.hashicorp.com/terraform
 
 Also, be sure it is on the system's PATH.
 
+<br>
+
+
 ### VSCode
 This project was made using VSCode with Bruin. Create a new project in the directory of your choice.
+
+<br>
 
 ### Bruin
 Install Bruin: One way is using the Git Bash terminal inside VSCode
@@ -55,6 +62,9 @@ curl -LsSf https://getbruin.com/install/cli | sh
 If it doesn't work, check the following link for more detailed instructions: https://getbruin.com/docs/bruin/getting-started/introduction/installation.html
 
 Once installed, it is recommended to get the Bruin VSCode extension. You can find it on the extensions tab inside VSCode.
+
+
+<br>
 
 ### VSCode (continued)
 It is time to use Terraform. First, you need to tell Terraform what provider you will use. Create a file called main.tf and write the following:
@@ -102,7 +112,7 @@ variable "project_id" {
 
 ```
 Replace the default field with the project ID you noted earlier.
-
+<br>
 
 Now is a good time to authenticate to Google Cloud using the json file you downloaded before. 
 Set the GOOGLE_APPLICATION_CREDENTIALS environment variable to the path of the JSON file.
@@ -166,7 +176,7 @@ default_connections:
 This tells Bruin to run the pipeline once a year, since the dataset is updated annually.
 ### Note
 If there are any problems while setting up Bruin , please refer to the documentation: https://getbruin.com/docs/bruin/getting-started/introduction/installation.html
-
+<br><br>
 ## Bruin Assets
 Create 5 files inside the assets folder that was created with bruin init:
 * datalake_ingestion.py
@@ -179,7 +189,10 @@ Create 5 files inside the assets folder that was created with bruin init:
 [Return](#table-of-contents)
 
 
-## Ingestion
+<br><br>
+
+
+## Step 1: Data Lake
 ### datalake_ingestion.py
 The first part of the pipeline will be downloading the dataset and putting it into the data lake:
 
@@ -237,7 +250,10 @@ upload_csv(
 [Return](#table-of-contents)
 
 
-## Warehouse
+<br><br>
+
+
+## Step 2: Data Warehouse
 ### table_warehouse.sql
 Then, the dataset inside the data lake will go into the data warehouse using the following .sql file:
 
@@ -281,7 +297,10 @@ FROM FILES (
 
 [Return](#table-of-contents)
 
-## Dashboard
+
+<br><br>
+
+## Step 3: View Creation
 ### distribution_view.sql
 In order to get the data in a more visual format, you will need to transform the data inside the warehouse:
 One of them will be showing each console percentual influence 
@@ -333,11 +352,10 @@ Now, with both views created, you will create the dashboard with Looker Studio. 
 * Select the two views just created.
 * Create a new report and put each view in a different graph.
 
-  
-The finished dashboard will look like this: ![Project Dahboard](https://github.com/davidf552/Videogame_sales/blob/main/images/project_dashboard.png)
+
+<br>
 
 
-You can also share the link when you finished the report like this: https://lookerstudio.google.com/s/gzHHnAxkZss
 
 ### dashboard.asset.yml
 Finally, create a dashboard asset:
@@ -359,7 +377,16 @@ tags:
 
 
 ```
+<br><br>
+
+### Dashboard
+The report for this project is located here: https://lookerstudio.google.com/s/gzHHnAxkZss
+
+
 [Return](#table-of-contents)
+
+
+<br><br>
 
 
 ## Pipeline
