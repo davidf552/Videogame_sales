@@ -8,7 +8,7 @@ It is important to get up-to-date information regarding sales and the public's p
 In this project: 
 * A yearly report about videogame sales will be transported from its source to Google Cloud Storage GCS (data lake). [Dataset location](https://www.kaggle.com/datasets/bhushandivekar/video-game-sales-and-industry-data-1980-2024/data)
 * From GCS, it will go into Google BigQuery (data warehouse).
-* Inside BigQuery, two transformations will take place and create two different Views, where Looker Studio (dashboard) will present them in a graphical manner.
+* Inside BigQuery, two transformations will take place and create two different Tables, where Looker Studio (dashboard) will present them in a graphical manner.
 
 
 How will these 3 steps be executed? It can be done manually one at a time, but there is a better way: a data pipeline.
@@ -31,7 +31,7 @@ Bruin will be the data platform employed to build all the above and in simple st
 - [Step 3: Table Creation](#step-3-table-creation)
 - [Pipeline](#pipeline)
 <br><br>
-![Project_schematics](https://github.com/davidf552/Videogame_sales/blob/main/images/Zoomcamp_project2026.png)
+![Project_schematics](https://github.com/davidf552/Videogame_sales/blob/main/images/Zoomcamp_project.png)
 
 ## Setup
 ### Google Cloud Services
