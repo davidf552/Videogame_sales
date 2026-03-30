@@ -42,7 +42,7 @@ df.to_csv("Video_Games_Sales_Cleaned.csv", index=False)
 
 
 upload_csv(
-    bucket_name="bruin-test-001",
+    bucket_name="",
     source_file_name="Video_Games_Sales_Cleaned.csv",
     destination_blob_name="Video_Games_Sales_Cleaned.csv"
 )
